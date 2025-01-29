@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/url"
 )
 
 type (
@@ -36,7 +37,7 @@ func NewWeatherClient(baseURL, apiKey string) *WeatherClient {
 }
 
 func (c WeatherClient) GetWeather(city string) (*WeatherResponse, error) {
-	weatherAPIURL := fmt.Sprintf("%s?key=%s&q=%s", c.baseURL, c.apiKey, city)
+	weatherAPIURL := fmt.Sprintf("%s?key=%s&q=%s", c.baseURL, c.apiKey, url.QueryEscape(city))
 
 	resp, err := c.client.Get(weatherAPIURL)
 	if err != nil {

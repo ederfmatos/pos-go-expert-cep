@@ -13,6 +13,7 @@ type Response struct {
 	Celsius    float64 `json:"temp_C"`
 	Fahrenheit float64 `json:"temp_F"`
 	Kelvin     float64 `json:"temp_K"`
+	City       string  `json:"city"`
 }
 
 var (
@@ -65,6 +66,7 @@ func makeServer(viaCepClient *ViaCepClient, weatherClient *WeatherClient) *http.
 			Celsius:    round(celsius),
 			Fahrenheit: round(celsius*1.8 + 32),
 			Kelvin:     round(celsius + 273),
+			City:       viaCepResponse.Localidade,
 		}
 		_ = json.NewEncoder(writer).Encode(response)
 	})

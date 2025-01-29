@@ -74,6 +74,7 @@ func Test_GetWeather(t *testing.T) {
 		requireEqual(t, 30.0, response.Celsius, "Celsius")
 		requireEqual(t, 303.0, response.Kelvin, "Kelvin")
 		requireEqual(t, 86.0, response.Fahrenheit, "Fahrenheit")
+		requireEqual(t, "City", response.City, "City")
 	})
 
 	defer httpServer.Close()
